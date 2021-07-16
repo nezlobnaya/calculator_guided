@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Display from './components/Display/Display';
+import Logo from './components/Logo/Logo';
+import Numbers from './components/Numbers/Numbers';
+import Operators from './components/Operators/Operators';
+import Specials from './components/Specials/Specials';
+
+
+
 
 function App() {
+  const [ display, setDisplay ] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <div className = 'main-container'>
+        <Logo />
+        <Display total={display} />
+        <div className='buttons-container'>
+          <div className = 'special-number'>
+            <Specials setDisplay={setDisplay} display={display} />
+            <Numbers setDisplay={setDisplay} display={display} />
+          </div>
+          <div className='operators'>
+            <Operators setDisplay={setDisplay} display={display} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
